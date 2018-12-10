@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*质数练习
+			 * 质数：只能被1和它本身整除的数，1不是质数也不是合数
+			 * 判断输入的数是否为质数
+			 */
+//			var num = prompt("Please input a number:");
+//			var flag = true;
+//			for (var i=2,k=0; i<num ; i++) {
+//				if(num % i == 0){
+//					flag = false
+//				}
+//			}
+//			if(flag){                //if (flag == true)
+//				alert(num + "是质数");
+//			}else{
+//				alert(num + "不是质数");
+//			}	
+
+			/*输出2-100所有质数*/
+			
+			console.time("test");
+			for (var num=2; num<10000;num++) {
+				var flag = true;
+				for (var i=2,k=0; i<Math.sqrt(num) ; i++) {
+					if(num % i == 0){
+						flag = false
+						break;
+					}
+				}
+				if(flag){
+					document.write(num +"<br/>");
+				}	
+			}
+			console.timeEnd("test");
+
+			
+						
+		</script>
+		
+	</head>
+	<body>
+	</body>
+</html>

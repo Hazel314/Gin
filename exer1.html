@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			/*输入成绩，输出奖励*/
+			var score = prompt("Please input your score:");
+			if (score == 100){
+				alert("BMW");
+			}else if (score < 100 && score > 60){
+				alert("8X");
+			}else if (score < 60 && score > 0){
+				alert('nothing');
+			}else if (score > 100 || score < 0 || isNaN(score)){
+				alert("wrong");
+			}
+			else{
+				alert("Please check the number!")
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			
+			//去掉数组中重复的数字
+			var arr = [1,2,4,2,2,1,5,5,1,2,3,4];
+			for (var i=0;i<arr.length;i++) {
+				for (var j=i+1;j<arr.length;j++) {
+					if(arr[i] == arr[j]){
+						arr.splice(j,1);
+						//当删除了当前j所在的元素以后，后边的元素会自动补位
+						//此时将不会再比较这个元素，需要再比较一次j所在位置的元素
+						j--;
+						console.log(arr);
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
