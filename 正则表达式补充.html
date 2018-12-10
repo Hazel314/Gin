@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			//接收一个用户输入的用户名
+//			var str = prompt("请输入用户名：");
+			
+			var str = "    a d  min        ";
+			console.log(str);
+			
+			//去除掉字符串中的空格
+			strResult = str.replace(/\s/g , "");
+			
+			//去除掉字符串中的前后的空格
+			strResult = str.replace(/^\s/g , "");  //只会去除开头第一个空格
+			strResult = str.replace(/^\s*/ , "");  //去除开头的0个或多个空格，用+效果一样
+			
+			strResult = str.replace(/\s*$/ , "");  //去掉结尾的0个或多个空格
+			strResult = str.replace(/^\s*|\s*$/ , "");  //未增加全局匹配，去掉开头空格之后，不会去掉结尾空格
+			strResult = str.replace(/^\s*|\s*$/g , "");  //全局匹配，去除开头和结尾的空格
+			
+			
+			console.log(strResult);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

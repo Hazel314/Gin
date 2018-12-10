@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 电子邮件
+			 * abc_123.abc_123@abc123.com.cn
+			 * 
+			 * abc_123           .  abc_123           @  abc123      .  com           .  cn
+			 * 任意字母数字下划线  .  任意字母数字下划线  @  任意字母数字  .  任意字母(2-5)  .  任意字母(2-5)
+			 * \w{3,}            \. \w+               @  [A-z0-9]    \. [A-z]{2,5}    \. [A-z]{2,5}
+			 */
+			
+			var email = "abc_123.abc_123@163.com.cn";
+			email = "hazel_314@163.com";
+			
+			var emailReg = /^\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+			
+			console.log(emailReg.test(email));
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

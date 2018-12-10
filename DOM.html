@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 将script标签写到页面的上边
+			 * 在代码执行时，页面还没有加载，DOM对象也没有加载
+			 * 会导致无法获取到DOM对象
+			 */
+			
+			/*
+			 * onload时间会在整个页面加载完成之后才触发
+			 * 为window绑定一个onload事件
+			 * 确保代码执行时所有的DOM对象已经加载完毕了
+			 */
+			
+			window.onload = function(){
+				var btn = document.getElementById("btn");
+				
+				btn.ondblclick = function(){
+					alert("hello");
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<!--<button id="btn">一个button</button>
+		<script type="text/javascript">
+			//文档节点
+			//console.log(document);
+			//获取到button对象
+			var btn = document.getElementById("btn");
+			//console.log(btn);
+			//修改按钮的文字
+			//console.log(btn.innerHTML)
+			btn.innerHTML = "一个按钮";
+		</script>-->
+		
+		<!--<button id="btn" onclick="alert('click')">一个button</button>-->
+		<button id="btn">一个button</button>
+		<script type="text/javascript">
+			var btn = document.getElementById("btn");
+			
+			//绑定一个单击事件
+			//单击响应函数
+//			btn.onclick = function(){
+//				alert("function click");
+//			}
+			
+//			btn.ondblclick = function(){
+//				alert("double click!");
+//			}
+		</script>
+		
+	</body>
+</html>
