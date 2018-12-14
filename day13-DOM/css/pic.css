@@ -1,0 +1,22 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+#pic{
+	margin: 50px auto;
+	width: 500px;
+	background-color: indianred;
+	padding: 10px;
+	/*margin: 10px;*/
+	text-align: center;
+}
+
+#pic img{
+	height: 333px;
+	width: 500px;
+}
+
+#pic button{
+	margin: 5px;
+}

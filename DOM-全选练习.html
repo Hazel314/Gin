@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>全选练习</title>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			#wrapper{
+				margin: 30px;
+			}
+			#headWrap{
+				display: inline-block;
+			}
+			#headWrap h3{
+				font-family: arial;
+				font-size: 22px;
+				/*margin: 10px;*/
+				letter-spacing: 1px;
+				/*width: 100px;*/
+				float: left;
+			}
+			/*#headWrap input{
+				display: inline-block;
+				line-height: 22px;
+				margin-top: 10px;
+				vertical-align: middle;
+			}*/
+			#sports{
+				word-spacing: 10px;
+			}
+			#check button{
+				margin: 10px;
+				margin-left: 0;
+				border: none;
+				height: 25px;
+				width: 50px;
+				letter-spacing: 1px;
+				/*font-weight: bold;*/
+			}
+		</style>
+		<script type="text/javascript">
+			var myClick = function(btnId , fun){
+				var btn = document.getElementById(btnId);
+				btn.onclick = fun;
+			}
+			
+			window.onload = function(){
+				var items = document.getElementsByName("item");
+				var allBox = document.getElementById("allOrNone");
+				
+				//全选
+				myClick("selectAll" , function(){
+					for (var i=0 ; i<items.length ; i++) {
+//						console.log(items[i].checked);
+						items[i].checked = true;
+					}
+					allBox.checked = true;
+				});
+				
+				//全不选
+				myClick("selectNone" , function(){
+					for (var i=0 ; i<items.length ; i++) {
+						items[i].checked = false;
+					}
+					allBox.checked = false;
+				});
+				
+				//反选
+				myClick("selectInverse" , function(){
+					for (var i=0 ; i<items.length ; i++) {
+//						if(items[i].checked){
+//							items[i].checked = false;
+//						}else{
+//							items[i].checked = true;
+//						}
+						items[i].checked = !(items[i].checked);
+					}
+				});
+				
+				//提交
+				myClick("submit" , function(){
+					var checkSports=[];
+					for (var i=0 ; i<items.length ; i++) {
+						if(items[i].checked){
+//							checkSports += items[i].value;
+							checkSports.push(items[i].value);
+						}
+					}
+					if(checkSports.length){
+						alert("已选中 " + checkSports.length + " 项：\n" + checkSports.join("，"));
+					}else{
+						alert("未选择");
+					}
+//					alert(checkSports.join("+"));
+				});
+				
+				//全选/全不选
+				allBox.onclick = function(){
+//					console.log("123");
+					for (var i=0 ; i<items.length ; i++) {
+						items[i].checked = allBox.checked;
+					}
+				}
+				
+				//检查，判断各个选框状态与全选框是否一致，有一个未选择则不是全选
+				for (var i=0 ; i<items.length ; i++) {
+					items[i].onclick = function(){
+						allBox.checked = true;
+						for (var j=0;j<items.length ; j++) {
+							if(!items[j].checked){
+								allBox.checked = false;
+							}
+						}
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="headWrap">
+				<h3>SELECT：</h3>
+				<input type="checkbox" name="allOrNone" id="allOrNone" value="allNone" />全选/全不选
+			</div>
+			<div id="sports">
+				<input type="checkbox" name="item" value="basketball" />篮球
+				<input type="checkbox" name="item" value="baseball" />棒球
+				<input type="checkbox" name="item" value="tennis" />网球
+				<input type="checkbox" name="item" value="football" />足球
+				<input type="checkbox" name="item" value="volleyball" />排球
+				<input type="checkbox" name="item" value="softball" />垒球
+			</div>
+			<div id="check">
+				<button id="selectAll">全选</button>
+				<button id="selectNone">全不选</button>
+				<button id="selectInverse">反选</button>
+				<button id="submit">提交</button>
+			</div>
+		</div>
+	</body>
+</html>

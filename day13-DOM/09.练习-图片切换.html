@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图片切换练习</title>
+		<link rel="stylesheet" type="text/css" href="css/pic.css"/>
+		<script type="text/javascript">
+			window.onload = function(){
+				var prev = document.getElementById("prev");
+				var next = document.getElementsByClassName("next")[0];
+				var info = document.getElementById("info");
+				var img = document.getElementsByTagName("img")[0];
+				
+				var picArr = ["img/1.jpg" , "img/2.jpg" , "img/3.jpg" , "img/4.jpg" , "img/5.jpg"];
+				var index = 0;
+				info.innerHTML = "一共 "+picArr.length+" 张图，当前第 "+(index+1)+" 张";
+				
+				
+				prev.onclick = function(){
+					index--;
+					if(index<0){
+						index = picArr.length-1;
+					}
+					info.innerHTML = "一共 "+picArr.length+" 张图，当前第 "+(index+1)+" 张";
+					img.src = picArr[index];
+				}
+				
+				next.onclick = function(){
+					index++;
+					if(index>picArr.length-1){
+						index = 0;
+					}
+					info.innerHTML = "一共 "+picArr.length+" 张图，当前第 "+(index+1)+" 张";
+					img.src = picArr[index];
+//					alert("next");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="pic">
+			<p id="info"></p>
+			<img src="img/1.jpg"/>
+			<button id="prev">上一张</button>
+			<button class="next">下一张</button>	
+		</div>
+	</body>
+</html>
