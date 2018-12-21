@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.wrapper {
+				width: 1400px;
+				min-width: 1400px;
+			}
+			
+			.onScrollBox,
+			.onMouseMoveBox,
+			.boxMoveBox {
+				width: 400px;
+				float: left;
+				border: 1px dashed;
+				margin: 10px;
+				padding: 10px;
+			}
+			
+			.wrap {
+				width: 300px;
+				margin: 0 auto;
+			}
+			
+			.wrap h3 {
+				margin: 0;
+			}
+			
+			#info {
+				width: 300px;
+				height: 500px;
+				background-color: cornsilk;
+				overflow: auto;
+				border: 1px solid;
+			}
+			/*.onMouseMoveBox {
+				width: 400px;
+				float: left;
+			}*/
+			
+			#areaDiv {
+				width: 300px;
+				height: 300px;
+				border: 1px solid;
+				background-color: seashell;
+				margin: 60px auto 0;
+				cursor: crosshair;
+			}
+			
+			#showMsg,
+			#anchorMsg,
+			#resultMsg {
+				width: 300px;
+				height: 30px;
+				line-height: 30px;
+				border: 1px solid;
+				margin: 10px auto;
+			}
+			
+			.boxMoveBox {
+				height: 600px;
+				position: relative;
+				background-color: antiquewhite;
+			}
+			
+			#littleBall {
+				width: 60px;
+				height: 60px;
+				background-color: salmon;
+				border-radius: 30px;
+				position: absolute;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function() {
+				//滚动条练习
+				var info = document.getElementById("info");
+				var inputs = document.getElementsByTagName("input");
+				inputs[1].onclick = function() {
+					console.log("info.scrollHeight:" + info.scrollHeight);
+					console.log("info.scrollTop:" + info.scrollTop);
+					console.log("info.offsetHeight:" + info.offsetHeight);
+					console.log("info.clientHeight:" + info.clientHeight);
+				}
+				info.onscroll = function() {
+					if(info.scrollHeight - info.scrollTop == info.clientHeight) {
+						inputs[0].disabled = false;
+					}
+				}
+				inputs[0].onclick = function() {
+					//if(inputs[0].checked){
+					//	inputs[1].disabled = false;
+					//}else{
+					//	inputs[1].disabled = true;
+					//}
+					inputs[1].disabled = !inputs[0].checked;
+				}
+
+				//鼠标移动练习
+				var areaDiv = document.getElementById("areaDiv");
+				var showMsg = document.getElementById("showMsg");
+				var anchorMsg = document.getElementById("anchorMsg");
+
+				areaDiv.onmousemove = function(event) {
+					/*
+					 * 在IE8中，响应函数被触发时，浏览器不会传递事件对象，
+					 * 在IE8及以下的浏览器中，是将事件对象作为window对象的属性保存的
+					 */
+					//解决事件对象的兼容性问题
+					//					if(!event){
+					//						event = window.event;
+					//					}
+					//或运算||，会返回为真的一个，和if判断效果一样
+					event = event || window.event
+
+					var moveX = event.clientX;
+					var moveY = event.clientY;
+					var zeroX = areaDiv.offsetLeft;
+					var zeroY = areaDiv.offsetTop;
+
+					//					console.log(event);
+					//					console.log("clientX:" + moveX + " , clientY:" + moveY);
+					//					console.log("offsetLeft:"+zeroX+","+"offsetTop:"+zeroY);
+					showMsg.innerHTML = " X= " + moveX + " , Y= " + moveY;
+					anchorMsg.innerHTML = "X= " + zeroX + " , Y= " + zeroY;
+					resultMsg.innerHTML = " X= " + (moveX - zeroX) + " , Y= " + (moveY - zeroY);
+				}
+
+				//跟随鼠标移动练习
+				var littleBall = document.getElementById("littleBall");
+				var boxMoveBox = littleBall.parentNode;
+				boxMoveBox.onmousemove = function(event) {
+					var mouseX = event.clientX;
+					var mouseY = event.clientY;
+					var boxX = boxMoveBox.offsetLeft;
+					var boxY = boxMoveBox.offsetTop;
+					var ballX = parseInt(getStyle(littleBall, "width")) / 2;
+					var ballY = parseInt(getStyle(littleBall, "height")) / 2;
+					//获取滚动条滚动的距离
+					/*
+					 * Chrome认为浏览器的滚动条是body的，可以通过body.scrollTop来获取
+					 * 火狐等浏览器认为滚动条是HTML的，需要通过documentElement.scrollTop来获取
+					 */
+					var st = document.body.scrollTop || document.documentElement.scrollTop;
+					var sl = document.body.scrollLeft || document.documentElement.scrollLeft;
+
+					littleBall.style.left = mouseX - boxX + sl + "px";
+					littleBall.style.top = mouseY - boxY + st + "px";
+
+					function getStyle(obj, name) {
+						if(window.getComputedStyle) {
+							return window.getComputedStyle(obj, null)[name];
+						} else {
+							return obj.currentStyle[name];
+						}
+					}
+
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="onScrollBox">
+				<div class="wrap">
+					<h3>阅读到最后</h3>
+					<p id="info">
+						[CSS overflow 属性]<br/> 【浏览器支持】
+						<br/> 所有主流浏览器都支持 overflow 属性。<br/> *注释：任何的版本的 Internet Explorer （包括 IE8）都不支持属性值 "inherit"。<br/><br/> 【定义和用法】
+						<br/> overflow 属性规定当内容溢出元素框时发生的事情。<br/><br/> 【说明】
+						<br/> 这个属性，则浏览器会显示滚动条以便查看其余的内容。
+						<br/><br/> ⑤nherit：
+						<br/>规定应该从父元素继承 overflow 属性的值。<br/><br/> [HTML DOM Element 对象]<br/> 【属性和方法】
+						<br/> ①element.offsetHeight：
+						<br/>返回元素的高度。<br/><br/> ②element.offsetWidth：
+						<br/>返回元素的宽度。<br/><br/> ③element.offsetLeft：
+						<br/>返回元素的水平偏移位置。<br/><br/> ④element.offsetParent：
+						<br/>返回元素的偏移容器。<br/><br/> ⑤element.offsetTop：
+						<br/>返回元素的垂直偏移位置。<br/><br/> ⑥element.scrollHeight：
+						<br/>返回元素的整体高度。<br/><br/> ⑦element.scrollLeft：
+						<br/>返回元素左边缘与视图之间的距离。<br/><br/> ⑧element.scrollTop：
+						<br/>返回元素上边缘与视图之间的距离。<br/><br/> ⑨element.scrollWidth：
+						<br/>返回元素的整体宽度。<br/></p>
+					<input type="checkbox" disabled="disabled" />已阅读！
+					<input type="button" value="确认" disabled="disabled" />
+				</div>
+			</div>
+			<div class="onMouseMoveBox">
+				<div id="areaDiv"></div>
+				<div id="showMsg"></div>
+				<div id="anchorMsg"></div>
+				<div id="resultMsg"></div>
+			</div>
+			<div class="boxMoveBox">
+				<div id="littleBall"></div>
+			</div>
+		</div>
+	</body>
+
+</html>

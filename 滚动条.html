@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#info{
+				width: 300px;
+				height: 500px;
+				background-color: cornsilk;
+				overflow: auto;
+			}
+			input{
+				
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var info = document.getElementById("info");
+				var inputs = document.getElementsByTagName("input");
+				inputs[1].onclick = function(){
+					console.log("info.scrollHeight:"+ info.scrollHeight);
+					console.log("info.scrollTop:"+ info.scrollTop);
+					console.log("info.offsetHeight:"+ info.offsetHeight);
+				}
+				info.onscroll = function(){
+					if(info.scrollHeight - info.scrollTop == info.offsetHeight){
+						alert("done");
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<h3>阅读以下条款</h3>
+		<p id="info">[CSS overflow 属性]<br/>
+			【浏览器支持】<br/>
+			  所有主流浏览器都支持 overflow 属性。<br/>
+			 *注释：任何的版本的 Internet Explorer （包括 IE8）都不支持属性值 "inherit"。<br/><br/>
+			【定义和用法】<br/>
+			  overflow 属性规定当内容溢出元素框时发生的事情。<br/><br/>
+			【说明】<br/>
+			这个属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。<br/><br/>
+			【可能的值】<br/>
+			①visible：<br/>默认值。内容不会被修剪，会呈现在元素框之外。<br/><br/>
+			②hidden：<br/>内容会被修剪，并且其余内容是不可见的。<br/><br/>
+			③scroll：<br/>内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。<br/><br/>
+			④auto：<br/>如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。<br/><br/>
+			⑤nherit：<br/>规定应该从父元素继承 overflow 属性的值。<br/><br/>
+			[HTML DOM Element 对象]<br/>
+			【属性和方法】<br/>
+			①element.offsetHeight：<br/>返回元素的高度。<br/><br/>
+			②element.offsetWidth：<br/>返回元素的宽度。<br/><br/>
+			③element.offsetLeft：<br/>返回元素的水平偏移位置。<br/><br/>
+			④element.offsetParent：<br/>返回元素的偏移容器。<br/><br/>
+			⑤element.offsetTop：<br/>返回元素的垂直偏移位置。<br/><br/>
+			⑥element.scrollHeight：<br/>返回元素的整体高度。<br/><br/>
+			⑦element.scrollLeft：<br/>返回元素左边缘与视图之间的距离。<br/><br/>
+			⑧element.scrollTop：<br/>返回元素上边缘与视图之间的距离。<br/><br/>
+			⑨element.scrollWidth：<br/>返回元素的整体宽度。<br/></p>
+		<input type="checkbox" disabled="disabled"/>已阅读！
+		<input type="button" value="确认" />
+	</body>
+</html>

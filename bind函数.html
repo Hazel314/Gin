@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			
+			function bind(obj , evenStr , callback){
+				if(obj.addEventListener){
+					//大部分浏览器兼容的方式：obj.addEventListener()
+					obj.addEventListener(evenStr , callback , false);
+				}else{
+					
+					/*
+					 * this是谁 是由调用方式决定的
+					 * callback.call(obj)
+					 */
+					//IE8及以下:obj.attachEvent()
+					obj.attachEvent("on"+evenStr , function(){
+						//在匿名函数中调用回调函数
+						callback.call(obj);
+					})
+				}
+			}
+		</script>
+	</head>
+	<body>
+		/*
+		 * 事件的传播
+		 *1. 由内向外：当事件触发时，应该先触发当前元素上的事件，然后再向当前元素的祖先元素上传播，也就是说事件应该在冒泡阶段执行
+		 *2. 由外向内：当事件触发时，应该先触发当前元素的最外层的祖先元素的事件，然后再向内传播给后代元素
+		 *!3. 将事件传播分成了三个阶段：
+		 *①捕获阶段：
+		 *   -在捕获阶段时从最外层的祖先元素，向目标元素进行事件的捕获，但是默认此时不会触发事件
+		 *②目标阶段：
+		 *   -事件捕获到目标元素，捕获结束开始在目标元素上触发事件
+		 *③冒泡阶段：
+		 *   -事件从目标元素向他的祖先元素传递，依次触发祖先元素上的事件
+		
+		 *如果希望在捕获阶段就触发事件，可以吧addEventListener()的第三个参数设置为true。
+		 *一般情况下不会希望在捕获阶段触发事件，所以这个参数一般都是false。
+		 *IE8及以下的浏览器中没有捕获阶段
+		 */
+	</body>
+</html>
